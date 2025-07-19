@@ -6,7 +6,11 @@ async function main() {
 
 	registerCommand(registry, "login", handlerLogin);
 
-	runCommand(registry, process.argv[2], ...process.argv.slice(3));
+	const command = process.argv[2];
+
+	const args = process.argv.slice(3);
+
+	runCommand(registry, command, ...args);
 }
 
 await main();
