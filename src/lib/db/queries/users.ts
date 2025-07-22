@@ -15,6 +15,15 @@ export async function findUserByName(name: string) {
 	return result;
 }
 
+export async function getUserById(userId: string) {
+	const [username] = await db
+		.select({ name: users.name })
+		.from(users)
+		.where(eq(users.id, userId));
+
+	return username;
+}
+
 export async function getUsers() {
 	return await db.query.users.findMany();
 }

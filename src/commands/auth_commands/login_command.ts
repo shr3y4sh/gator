@@ -1,5 +1,5 @@
+import { setUser } from "src/config";
 import { findUserByName } from "src/lib/db/queries/users";
-import { setUser } from "../config";
 
 export const handlerLogin = async (cmdName: string, ...args: string[]) => {
 	if (args.length === 0 || cmdName !== "login") {
