@@ -1,8 +1,12 @@
-import { readConfig } from "src/config";
+import { createFeedFollow } from "src/lib/db/queries/feed_follows";
 import { createFeed } from "src/lib/db/queries/feeds";
-import { findUserByName } from "src/lib/db/queries/users";
+import { User } from "src/types";
 
-export async function handlerAddFeed(cmdName: string, ...args: string[]) {
+export async function handlerAddFeed(
+	cmdName: string,
+	user: User,
+	...args: string[]
+) {
 	if (args.length < 2 || cmdName !== "addfeed") {
 		throw new Error('Invalid usage: run "addfeed <user-name> <feed-url>"');
 	}
@@ -11,15 +15,9 @@ export async function handlerAddFeed(cmdName: string, ...args: string[]) {
 
 	const url = args[1];
 
-	const { currentUserName } = await readConfig();
-
-	const user = await findUserByName(currentUserName);
-
-	if (!user) {
-		throw new Error("Fatal error, logged in user not registered");
-	}
-
 	const feedData = await createFeed(user.id, url, feedName);
+
+	await createFeedFollow(feedData.id, user.id);
 
 	console.log(feedData);
 }

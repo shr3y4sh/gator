@@ -1,4 +1,4 @@
-import { deleteAllRows } from "src/lib/db/queries/users";
+import { deleteAllRows } from "../lib/db/queries/users";
 
 export async function handlerReset(cmdName: string) {
 	if (cmdName !== "reset") {

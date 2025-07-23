@@ -1,4 +1,4 @@
-import { fetchFeed } from "src/feed_utils";
+import { fetchFeed } from "src/utils/fetchfeed_util";
 
 export async function handlerAgg(cmdName: string) {
 	if (cmdName !== "agg") {
