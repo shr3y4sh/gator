@@ -1,6 +1,6 @@
 {
-  "id": "067c4bdf-ea3b-483a-b25e-5cd974aca67f",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "42d623a7-0546-4e5c-93bf-a42ef91f4162",
+  "prevId": "067c4bdf-ea3b-483a-b25e-5cd974aca67f",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -128,6 +128,12 @@
           "primaryKey": false,
           "notNull": true,
           "default": "now()"
+        },
+        "last_fetched_at": {
+          "name": "last_fetched_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},

@@ -1,4 +1,5 @@
 import { deleteFeed } from "src/lib/db/queries/feed_follows";
+import { findFeedByUrl } from "src/lib/db/queries/feeds";
 import { User } from "src/types";
 
 export async function handlerUnfollow(
@@ -12,5 +13,11 @@ export async function handlerUnfollow(
 
 	const feedUrl = args[0];
 
-	await deleteFeed(feedUrl, user);
+	const feed = await findFeedByUrl(feedUrl);
+
+	if (!feed) {
+		throw new Error("Invalid feed url");
+	}
+
+	await deleteFeed(feed, user);
 }

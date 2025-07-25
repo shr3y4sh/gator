@@ -8,7 +8,7 @@ export async function handlerAddFeed(
 	...args: string[]
 ) {
 	if (args.length < 2 || cmdName !== "addfeed") {
-		throw new Error('Invalid usage: run "addfeed <user-name> <feed-url>"');
+		throw new Error('Invalid usage: run "addfeed <feed-name> <feed-url>"');
 	}
 
 	const feedName = args[0];
