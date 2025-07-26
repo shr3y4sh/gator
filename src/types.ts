@@ -1,8 +1,10 @@
-import { feeds, users } from "./schema";
+import { feeds, posts, users } from "./schema";
 
 export type Feed = typeof feeds.$inferSelect;
 
 export type User = typeof users.$inferSelect;
+
+export type Post = typeof posts.$inferSelect;
 
 export type RSSFeed = {
 	channel: Channel;

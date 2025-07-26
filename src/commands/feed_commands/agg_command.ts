@@ -55,8 +55,10 @@ function getTimeInterval(matches: RegExpMatchArray) {
 
 function handleError(err: unknown) {
 	if (err instanceof Error) {
-		console.log(err.message);
+		console.log(err.cause);
 	} else {
 		console.error("Unknown error", err);
 	}
+
+	// process.exit(1);
 }

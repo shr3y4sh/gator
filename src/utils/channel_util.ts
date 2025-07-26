@@ -5,7 +5,7 @@ export function checkValidChannel(channel: any): channel is Channel {
 		"title" in channel &&
 		"link" in channel &&
 		"description" in channel &&
-		checkItemInChannel(channel)
+		"item" in channel
 	);
 }
 
@@ -17,7 +17,15 @@ export function processChannel(channel: Channel): Channel {
 	const items = channel.item;
 
 	const validItems = items.map((item: any): RSSItem => {
+		// console.log(item);
+
 		const { title, description, link, pubDate } = item;
+
+		if (!pubDate) {
+			console.log("pubDate not returned, check format\n");
+			console.log(item);
+			throw new Error("Invalid pubDate\n");
+		}
 		return {
 			title,
 			description,
@@ -34,8 +42,4 @@ export function processChannel(channel: Channel): Channel {
 		link,
 		item: validItems,
 	};
-}
-
-function checkItemInChannel(channel: any) {
-	return "item" in channel;
 }

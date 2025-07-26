@@ -14,6 +14,7 @@ import { handlerFollow } from "./commands/feed_commands/follow_command";
 import { handlerFollowing } from "./commands/feed_commands/following_command";
 import { middlewareLoggedIn } from "./utils/logged_middleware";
 import { handlerUnfollow } from "./commands/feed_commands/unfollow_command";
+import { handlerBrowse } from "./commands/feed_commands/browse_command";
 
 async function main() {
 	const registry: CommandsRegistry = {};
@@ -27,6 +28,7 @@ async function main() {
 	registerCommand(registry, "feeds", handlerFeeds);
 	registerCommand(registry, "follow", middlewareLoggedIn(handlerFollow));
 	registerCommand(registry, "unfollow", middlewareLoggedIn(handlerUnfollow));
+	registerCommand(registry, "browse", middlewareLoggedIn(handlerBrowse));
 	registerCommand(
 		registry,
 		"following",
